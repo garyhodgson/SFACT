@@ -112,6 +112,7 @@ import cStringIO
 import os
 import sys
 import time
+import string
 
 
 __author__ = 'Enrique Perez (perez_enrique@yahoo.com) modifed as SFACT by Ahmet Cem Turan (ahmetcemturan@gmail.com)'
@@ -267,8 +268,11 @@ def writeOutput(fileName, shouldAnalyze=True):
 	if repository.addExportSuffix.value:
 		fileNameSuffix += '_export'
 	gcodeText = gcodec.getGcodeFileText(fileName, '')
+	
 	if repository.addProfileExtension.value:
-		fileNameSuffix += '.' + getFirstValue(gcodeText, '(<profileName>')
+		profileName = skeinforge_profile.getProfileName(skeinforge_profile.getCraftTypeName())
+		if profileName:
+			fileNameSuffix += '.' + string.replace(profileName, ' ', '_')
 	if repository.addDescriptiveExtension.value:
 		fileNameSuffix += getDescriptiveExtension(gcodeText)
 	if repository.addTimestampExtension.value:
