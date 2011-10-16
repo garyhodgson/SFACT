@@ -7,9 +7,6 @@ G90 				; Use absolute coordinates again
 G1 X5 Y5 F3000.0	;go to almost home
 M84 				;disable steppers so they dont get hot during idling...
 
-;or you can use this one comment out 
-;G1 X10.0 F4000 ;home (almost) x
-;G1 Y170 F4000 ; move the print to the front.
-;M104 S0 ; make sure the extuder is turned off.
-;M140 S0 ; make sure the bed is turned off.
-;M84 ; shut down motors.
+M104 S0 ; make sure the extuder is turned off.
+M140 S0 ; make sure the bed is turned off.
+M84 ; shut down motors.
